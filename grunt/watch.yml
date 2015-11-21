@@ -8,6 +8,7 @@ scripts:
   - jscs
   - karma:scripts:run
   - uglify
+  - copy
 
 grunt:
   options:

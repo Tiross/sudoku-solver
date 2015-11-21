@@ -1,0 +1,5 @@
+scripts:
+  expand: true
+  flatten: true
+  src: src/*.js
+  dest: build/
