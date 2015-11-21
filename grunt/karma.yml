@@ -1,19 +1,9 @@
-options:
-  frameworks:
-    - jasmine
-  files:
-    - src/*.js
-    - spec/*.js
-
 scripts:
+  configFile: karma.conf.js
   background: true
-  browsers:
-    - PhantomJS
-    - Safari
-    - Firefox
-  singleRun: false
 
 travis:
+  configFile: karma.conf.js
   browsers:
     - PhantomJS
     - Firefox
