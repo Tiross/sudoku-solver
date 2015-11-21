@@ -1,5 +1,7 @@
 {
   "name": "sudoku-solver",
+  "description": "Outil de résolution de sudoku",
   "version": "0.0.1",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "https://github.com/Tiross/sudoku-solver"
 }
