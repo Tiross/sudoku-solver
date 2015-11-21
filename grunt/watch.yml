@@ -1,0 +1,18 @@
+scripts:
+  options:
+    atBegin: true
+  files:
+    - src/*.js
+    - spec/*.js
+  tasks:
+  - jscs
+  - karma:scripts:run
+  - uglify
+
+grunt:
+  options:
+    reload: true
+  files:
+    - Grunfile.js
+    - grunt/**
+    - .jscsrc

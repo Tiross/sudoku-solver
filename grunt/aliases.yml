@@ -1,0 +1,8 @@
+
+default:
+  - watch
+
+travis:
+  - jscs
+  - karma:travis
+  - coveralls

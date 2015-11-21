@@ -1,0 +1,29 @@
+options:
+  frameworks:
+    - jasmine
+  files:
+    - src/*.js
+    - spec/*.js
+
+scripts:
+  background: true
+  browsers:
+    - PhantomJS
+    - Safari
+    - Firefox
+  singleRun: false
+
+travis:
+  browsers:
+    - PhantomJS
+    - Firefox
+  singleRun: true
+  reporters:
+    - progress
+    - coverage
+  coverageReporter:
+    type: lcov
+    dir: coverage/
+  preprocessors:
+    "src/*js":
+      - coverage

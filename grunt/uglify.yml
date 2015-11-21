@@ -1,0 +1,12 @@
+options:
+  compress:
+    drop_console: true
+  dead_code: true
+
+scripts:
+  expand: true
+  ext: '.min.js'
+  flatten: true
+  src:
+    - src/*.js
+  dest: build/

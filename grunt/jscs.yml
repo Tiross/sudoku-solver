@@ -1,0 +1,4 @@
+options:
+  config: .jscsrc
+src:
+  - src/*.js
