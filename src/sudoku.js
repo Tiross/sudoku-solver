@@ -151,6 +151,8 @@
         }
       }
     }
+
+    return this;
   };
 
   window.Sudoku = Sudoku;
