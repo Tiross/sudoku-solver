@@ -6,6 +6,9 @@
   };
 
   Sudoku.prototype.init = function () {
+    this.finished = false;
+    this.stuck = false;
+
     this.lines   = [[], [], [], [], [], [], [], [], []];
     this.columns = [[], [], [], [], [], [], [], [], []];
     this.blocks  = [[], [], [], [], [], [], [], [], []];
@@ -31,6 +34,14 @@
       this.blocks[ block ].push(cell);
       this.grid[ index ] = cell;
     }
+  };
+
+  Sudoku.prototype.isFinished = function () {
+    return this.finished;
+  };
+
+  Sudoku.prototype.isStuck = function () {
+    return this.stuck;
   };
 
   Sudoku.prototype.getValue = function (line, column) {

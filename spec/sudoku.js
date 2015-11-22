@@ -28,6 +28,13 @@ describe('Sudoku', function () {
 
       expect(sudoku.getCandidates(line, column)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     });
+
+    it('should not be marked finished or stuck', function () {
+      var sudoku = new Sudoku;
+
+      expect(sudoku.isFinished()).toBe(false);
+      expect(sudoku.isStuck()).toBe(false);
+    });
   });
 
   describe('adding values', function () {
