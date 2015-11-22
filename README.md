@@ -1,1 +1,1 @@
-# Sudoku solver
+# Sudoku solver [![Build Status](https://travis-ci.org/Tiross/sudoku-solver.svg?branch=master)](https://travis-ci.org/Tiross/sudoku-solver) [![Code Climate](https://codeclimate.com/github/Tiross/sudoku-solver/badges/gpa.svg)](https://codeclimate.com/github/Tiross/sudoku-solver) [![Coverage Status](https://coveralls.io/repos/Tiross/sudoku-solver/badge.svg?branch=master&service=github)](https://coveralls.io/github/Tiross/sudoku-solver?branch=master)
