@@ -1,8 +1,21 @@
 (function () {
   'use strict';
 
-  var Sudoku = function () {
+  var Sudoku = function (grid) {
+    var that = this;
+
     this.init();
+
+    if (grid && grid.length === 81) {
+      grid.forEach(function (value, index) {
+        var line   = Math.floor(index / 9);
+        var column = index % 9;
+
+        if (value) {
+          that.addValue(value, line, column);
+        }
+      });
+    }
   };
 
   Sudoku.prototype.init = function () {

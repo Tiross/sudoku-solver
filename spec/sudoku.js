@@ -35,6 +35,22 @@ describe('Sudoku', function () {
       expect(sudoku.isFinished()).toBe(false);
       expect(sudoku.isStuck()).toBe(false);
     });
+
+    it('should ignore argument if it\'s not a list of 81 cells', function () {
+      expect(new Sudoku([rand()])).toEqual(new Sudoku);
+    });
+
+    it('should use argument to add values', function () {
+      var sudoku = new Sudoku;
+      var value = rand();
+      var grid = new Array(81);
+
+      sudoku.addValue(value, 0, 0);
+
+      grid[0] = value;
+
+      expect(new Sudoku(grid)).toEqual(sudoku);
+    });
   });
 
   describe('adding values', function () {
