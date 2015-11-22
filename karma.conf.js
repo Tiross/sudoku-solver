@@ -3,6 +3,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     plugins: [
       'karma-jasmine',
+      'karma-coverage',
       'karma-safari-launcher',
       'karma-firefox-launcher',
       'karma-phantomjs-launcher',

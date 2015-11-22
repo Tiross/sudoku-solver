@@ -61,7 +61,7 @@ describe('Sudoku', function () {
     var column = rand();
 
     it('should return itself when adding a value', function () {
-      expect(sudoku.addValue(value, line, column)).teBe(sudoku);
+      expect(sudoku.addValue(value, line, column)).toBe(sudoku);
     });
 
     it('should now return the new value', function () {
@@ -69,7 +69,7 @@ describe('Sudoku', function () {
     });
 
     it('should not have any candidates on cell with value', function () {
-      expect(sudoku.getCandidates(line, rand())).toEqual([]);
+      expect(sudoku.getCandidates(line, column)).toEqual([]);
     });
 
     it('should not contains value on candidates in same line', function () {
