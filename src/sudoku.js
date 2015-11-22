@@ -27,6 +27,9 @@
     this.blocks  = [[], [], [], [], [], [], [], [], []];
     this.grid    = [];
 
+    this.eventHandler = {};
+    this.eventHandler.finded = function () {};
+
     for (var index = 0; index < 81; index++) {
       var line   = Math.floor(index / 9);
       var column = index % 9;
@@ -46,6 +49,14 @@
       this.columns[ column ].push(cell);
       this.blocks[ block ].push(cell);
       this.grid[ index ] = cell;
+    }
+
+    return this;
+  };
+
+  Sudoku.prototype.on = function (type, callback) {
+    if (type in this.eventHandler && 'function' === typeof callback) {
+      this.eventHandler[type] = callback;
     }
 
     return this;
@@ -106,6 +117,8 @@
     this.grid.map(function (cell) {
       if (!cell.value && cell.candidates.length === 1) {
         that.addValue(cell.candidates[0], cell.line, cell.column);
+
+        that.eventHandler.finded.call(that, cell.candidates[0], {line: cell.line, column: cell.column});
         count++;
       }
     });
@@ -134,6 +147,8 @@
 
           if (testInLines === 1 || testInColumns === 1 || testInBlocks === 1) {
             that.addValue(candidate, cell.line, cell.column);
+
+            that.eventHandler.finded.call(that, candidate, {line: cell.line, column: cell.column});
             count++;
           }
         });

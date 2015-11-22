@@ -156,8 +156,18 @@ describe('Sudoku', function () {
     var line   = rand();
     var column = rand();
 
+    var count = 0;
+
+    sudoku.on('founded', function () {
+      count++;
+    });
+
     it('should return itself when adding a value', function () {
       expect(sudoku.addValue(value, line, column)).toBe(sudoku);
+    });
+
+    it('should not trigger events', function () {
+      expect(count).toBe(0);
     });
 
     it('should now return the new value', function () {
@@ -197,9 +207,18 @@ describe('Sudoku', function () {
   describe('resolutions, ', function () {
     describe('findLonelyCandidate', function () {
       var sudoku = new Sudoku(oneMissingGrid);
+      var count = 0;
+
+      sudoku.on('finded', function () {
+        count++;
+      });
 
       it('should return how much values was founded', function () {
         expect(sudoku.findLonelyCandidate()).toBe(1);
+      });
+
+      it('should trigger finded event', function () {
+        expect(count).toBe(1);
       });
 
       it('will add value', function () {
@@ -209,9 +228,18 @@ describe('Sudoku', function () {
 
     describe('findHiddenSingle', function () {
       var sudoku = new Sudoku(hiddenCandidate);
+      var count = 0;
+
+      sudoku.on('finded', function () {
+        count++;
+      });
 
       it('should return how much values was founded', function () {
         expect(sudoku.findHiddenSingle()).toBe(4);
+      });
+
+      it('should trigger finded event', function () {
+        expect(count).toBe(4);
       });
 
       it('will add value', function () {
