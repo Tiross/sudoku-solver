@@ -62,6 +62,18 @@
     return this;
   };
 
+  Sudoku.prototype.each = function (callback) {
+    var that = this;
+
+    if ('function' === typeof callback) {
+      this.grid.forEach(function (cell) {
+        callback.call(that, {line: cell.line, column: cell.column});
+      });
+    }
+
+    return this;
+  };
+
   Sudoku.prototype.isFinished = function () {
     return this.finished;
   };

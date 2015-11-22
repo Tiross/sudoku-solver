@@ -255,6 +255,19 @@ describe('Sudoku', function () {
     });
   });
 
+  describe('each', function () {
+    it('should iterate on every cell', function () {
+      var sudoku = new Sudoku;
+      var count = 0;
+
+      sudoku.each(function (position) {
+        count++;
+      });
+
+      expect(count).toBe(81);
+    });
+  });
+
   describe('can resolve', function () {
     it('the easy grid', function () {
       var sudoku = new Sudoku(easyGrid);
