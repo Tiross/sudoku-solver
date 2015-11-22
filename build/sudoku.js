@@ -99,5 +99,19 @@
     return this;
   };
 
+  Sudoku.prototype.findLonelyCandidate = function () {
+    var that = this;
+    var count = 0;
+
+    this.grid.map(function (cell) {
+      if (!cell.value && cell.candidates.length === 1) {
+        that.addValue(cell.candidates[0], cell.line, cell.column);
+        count++;
+      }
+    });
+
+    return count;
+  };
+
   window.Sudoku = Sudoku;
 })();
