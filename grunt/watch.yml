@@ -6,7 +6,7 @@ scripts:
     - spec/*.js
   tasks:
   - jscs
-  - karma:scripts:run
+  - karma:scripts
   - uglify
   - copy
 

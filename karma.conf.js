@@ -22,7 +22,7 @@ module.exports = function(config) {
       'Safari',
       'Firefox',
     ],
-    singleRun: false,
+    singleRun: true,
     concurrency: Infinity,
   });
 };

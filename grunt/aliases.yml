@@ -1,6 +1,5 @@
 
 default:
-  - karma:scripts:start
   - watch
 
 travis:

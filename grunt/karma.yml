@@ -1,13 +1,11 @@
 scripts:
   configFile: karma.conf.js
-  background: true
 
 travis:
   configFile: karma.conf.js
   browsers:
     - PhantomJS
     - Firefox
-  singleRun: true
   reporters:
     - progress
     - coverage
