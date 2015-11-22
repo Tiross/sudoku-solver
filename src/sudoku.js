@@ -37,5 +37,9 @@
     return this.lines[ line ][ column ].value;
   };
 
+  Sudoku.prototype.getCandidates = function (line, column) {
+    return this.lines[ line ][ column ].candidates;
+  };
+
   window.Sudoku = Sudoku;
 })();
