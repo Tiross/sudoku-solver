@@ -89,5 +89,26 @@ describe('Sudoku', function () {
 
       expect(sudoku.getCandidates(otherLine, otherColumn).indexOf(value)).toBe(-1);
     });
+
+    it('will mark sudoku as finish', function () {
+      // jscs:disable
+      var grid = [
+        0, 5, 9, 7, 1, 6, 3, 8, 2,
+        6, 1, 2, 3, 8, 9, 7, 4, 5,
+        8, 7, 3, 2, 4, 5, 1, 6, 9,
+        3, 8, 7, 9, 6, 4, 5, 2, 1,
+        5, 2, 4, 1, 7, 3, 6, 9, 8,
+        1, 9, 6, 8, 5, 2, 4, 3, 7,
+        9, 6, 5, 4, 2, 1, 8, 7, 3,
+        7, 3, 1, 6, 9, 8, 2, 5, 4,
+        2, 4, 8, 5, 3, 7, 9, 1, 6,
+      ];
+      // jscs:enable
+
+      var sudoku = new Sudoku(grid);
+
+      expect(sudoku.isFinished()).toBe(false);
+      expect(sudoku.addValue(4, 0, 0).isFinished()).toBe(true);
+    });
   });
 });

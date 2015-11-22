@@ -69,6 +69,7 @@
 
   Sudoku.prototype.addValue = function (value, line, column) {
     var block = this.lines[ line ][ column ].block;
+    var hasNullValue = false;
 
     this.grid.map(function (cell) {
       if (cell.line === line && cell.column === column) {
@@ -87,7 +88,13 @@
           cell.revocated.push(value);
         }
       }
+
+      if (!cell.value) {
+        hasNullValue = true;
+      }
     });
+
+    this.finished = !hasNullValue;
 
     return this;
   };
