@@ -160,5 +160,9 @@ describe('Sudoku', function () {
         expect(sudoku.getValue(0, 0)).toBe(4);
       });
     });
+
+    xdescribe('resolve', function () {
+      // Comment tester que la méthode en utilise d'autres
+    });
   });
 });

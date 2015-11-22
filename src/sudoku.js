@@ -113,5 +113,13 @@
     return count;
   };
 
+  Sudoku.prototype.resolve = function () {
+    while (!this.isFinished() && !this.isStuck()) {
+      if (!this.findLonelyCandidate()) {
+        this.stuck = true;
+      }
+    }
+  };
+
   window.Sudoku = Sudoku;
 })();
