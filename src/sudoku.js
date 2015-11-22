@@ -47,6 +47,8 @@
       this.blocks[ block ].push(cell);
       this.grid[ index ] = cell;
     }
+
+    return this;
   };
 
   Sudoku.prototype.isFinished = function () {
