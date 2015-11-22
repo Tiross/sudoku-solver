@@ -16,6 +16,18 @@ var oneMissingGrid = [
   2, 4, 8, 5, 3, 7, 9, 1, 6,
 ];
 
+var hiddenCandidate = [
+  3, 0, 0, 0, 0, 0, 0, 0, 0,
+  9, 7, 0, 2, 1, 0, 0, 0, 0,
+  6, 0, 0, 5, 8, 3, 0, 0, 0,
+  2, 0, 0, 0, 0, 0, 9, 0, 0,
+  5, 0, 0, 6, 2, 1, 0, 0, 3,
+  0, 0, 8, 0, 0, 0, 0, 0, 5,
+  0, 0, 0, 4, 3, 5, 0, 0, 2,
+  0, 0, 0, 0, 9, 0, 0, 5, 6,
+  0, 0, 0, 0, 0, 0, 0, 0, 1,
+];
+
 var easyGrid = [
   0, 0, 0, 1, 0, 5, 0, 0, 0,
   1, 4, 0, 0, 0, 0, 6, 7, 0,
@@ -158,6 +170,21 @@ describe('Sudoku', function () {
 
       it('will add value', function () {
         expect(sudoku.getValue(0, 0)).toBe(4);
+      });
+    });
+
+    describe('findHiddenSingle', function () {
+      var sudoku = new Sudoku(hiddenCandidate);
+
+      it('should return how much values was founded', function () {
+        expect(sudoku.findHiddenSingle()).toBe(4);
+      });
+
+      it('will add value', function () {
+        expect(sudoku.getValue(0, 1)).toBe(8);
+        expect(sudoku.getValue(3, 4)).toBe(5);
+        expect(sudoku.getValue(7, 3)).toBe(1);
+        expect(sudoku.getValue(8, 1)).toBe(5);
       });
     });
 

@@ -113,10 +113,42 @@
     return count;
   };
 
+  Sudoku.prototype.findHiddenSingle = function () {
+    var that = this;
+    var count = 0;
+
+    this.grid.map(function (cell) {
+      if (!cell.value) {
+        cell.candidates.forEach(function (candidate) {
+          var testInLines = that.lines[ cell.line ].filter(function (val) {
+            return val.candidates.indexOf(candidate) != -1;
+          }).length;
+
+          var testInColumns = that.columns[ cell.column ].filter(function (val) {
+            return val.candidates.indexOf(candidate) != -1;
+          }).length;
+
+          var testInBlocks = that.blocks[ cell.block ].filter(function (val) {
+            return val.candidates.indexOf(candidate) != -1;
+          }).length;
+
+          if (testInLines === 1 || testInColumns === 1 || testInBlocks === 1) {
+            that.addValue(candidate, cell.line, cell.column);
+            count++;
+          }
+        });
+      }
+    });
+
+    return count;
+  };
+
   Sudoku.prototype.resolve = function () {
     while (!this.isFinished() && !this.isStuck()) {
       if (!this.findLonelyCandidate()) {
-        this.stuck = true;
+        if (!this.findHiddenSingle()) {
+          this.stuck = true;
+        }
       }
     }
   };
