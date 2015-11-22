@@ -42,12 +42,14 @@
   };
 
   Sudoku.prototype.addValue = function (value, line, column) {
+    var block = this.lines[ line ][ column ].block;
+
     this.grid.map(function (cell) {
       if (cell.line === line && cell.column === column) {
         cell.value = value;
       }
 
-      if (cell.line === line || cell.column === column) {
+      if (cell.line === line || cell.column === column || cell.block === block) {
         var position = cell.candidates.indexOf(value);
 
         if (position != -1) {

@@ -45,10 +45,22 @@ describe('Sudoku', function () {
       expect(sudoku.getValue(line, column)).toBe(value);
     });
 
-    it('should not contains value on candidates', function () {
-      expect(sudoku.getCandidates(line, column).indexOf(value)).toBe(-1);
-      expect(sudoku.getCandidates(rand(), column).indexOf(value)).toBe(-1);
+    it('should not contains value on candidates in same line', function () {
       expect(sudoku.getCandidates(line, rand()).indexOf(value)).toBe(-1);
+    });
+
+    it('should not contains value on candidates in same column', function () {
+      expect(sudoku.getCandidates(rand(), column).indexOf(value)).toBe(-1);
+    });
+
+    // Coupé pour le moment
+    xit('should not contains value on candidates in same block', function () {
+      var block  = Math.floor(line / 3) * 3 + Math.floor(column / 3);
+
+      var otherLine;
+      var otherColumn;
+
+      expect(sudoku.getCandidates(otherLine, otherColumn).indexOf(value)).toBe(-1);
     });
   });
 });
