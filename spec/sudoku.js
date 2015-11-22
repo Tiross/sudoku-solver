@@ -192,4 +192,24 @@ describe('Sudoku', function () {
       // Comment tester que la méthode en utilise d'autres
     });
   });
+
+  describe('can resolve', function () {
+    it('the easy grid', function () {
+      var sudoku = new Sudoku(easyGrid);
+
+      expect(sudoku.resolve().isFinished()).toBe(true);
+    });
+
+    xit('the gentle grid', function () {
+      var sudoku = new Sudoku(gentleGrid);
+
+      expect(sudoku.resolve().isFinished()).toBe(true);
+    });
+
+    xit('the moderate grid', function () {
+      var sudoku = new Sudoku(moderateGrid);
+
+      expect(sudoku.resolve().isFinished()).toBe(true);
+    });
+  });
 });
