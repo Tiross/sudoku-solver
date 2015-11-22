@@ -45,6 +45,10 @@ describe('Sudoku', function () {
       expect(sudoku.getValue(line, column)).toBe(value);
     });
 
+    it('should not have any candidates on cell with value', function () {
+      expect(sudoku.getCandidates(line, rand())).toEqual([]);
+    });
+
     it('should not contains value on candidates in same line', function () {
       expect(sudoku.getCandidates(line, rand()).indexOf(value)).toBe(-1);
     });

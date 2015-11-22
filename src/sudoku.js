@@ -47,6 +47,7 @@
     this.grid.map(function (cell) {
       if (cell.line === line && cell.column === column) {
         cell.value = value;
+        cell.candidates = [];
       }
 
       if (cell.line === line || cell.column === column || cell.block === block) {
