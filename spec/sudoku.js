@@ -94,7 +94,11 @@ describe('Sudoku', function () {
     it('should be reset with init()', function () {
       var sudoku = new Sudoku;
 
-      expect(sudoku.init()).toEqual(new Sudoku);
+      var value  = rand();
+      var line   = rand();
+      var column = rand();
+
+      expect(sudoku.addValue(value, line, column).init().getValue(line, column)).toBeNull();
     });
 
     it('should have null value if none inserted', function () {
@@ -123,19 +127,25 @@ describe('Sudoku', function () {
     });
 
     it('should ignore argument if it\'s not a list of 81 cells', function () {
-      expect(new Sudoku([rand()])).toEqual(new Sudoku);
-    });
-
-    it('should use argument to add values', function () {
-      var sudoku = new Sudoku;
       var value = rand();
-      var grid = new Array(81);
-
-      sudoku.addValue(value, 0, 0);
+      var grid = new Array(10);
 
       grid[0] = value;
 
-      expect(new Sudoku(grid)).toEqual(sudoku);
+      var sudoku = new Sudoku(grid);
+
+      expect(sudoku.getValue(0, 0)).toBeNull();
+    });
+
+    it('should use argument to add values', function () {
+      var value = rand();
+      var grid = new Array(81);
+
+      grid[0] = value;
+
+      var sudoku = new Sudoku(grid);
+
+      expect(sudoku.getValue(0, 0)).toEqual(value);
     });
   });
 
