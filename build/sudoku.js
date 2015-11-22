@@ -41,5 +41,27 @@
     return this.lines[ line ][ column ].candidates;
   };
 
+  Sudoku.prototype.addValue = function (value, line, column) {
+    this.grid.map(function (cell) {
+      if (cell.line === line && cell.column === column) {
+        cell.value = value;
+      }
+
+      if (cell.line === line || cell.column === column) {
+        var position = cell.candidates.indexOf(value);
+
+        if (position != -1) {
+          cell.candidates.splice(position, 1);
+        }
+
+        if (cell.revocated.indexOf(value) != -1) {
+          cell.revocated.push(value);
+        }
+      }
+    });
+
+    return this;
+  };
+
   window.Sudoku = Sudoku;
 })();
