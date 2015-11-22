@@ -5,4 +5,13 @@ describe('Sudoku', function () {
 
     expect(sudoku.init()).toEqual(new Sudoku);
   });
+
+  it('should have null value if none inserted', function () {
+    var sudoku = new Sudoku;
+
+    var line   = Math.floor(Math.random() * 9);
+    var column = Math.floor(Math.random() * 9);
+
+    expect(sudoku.getValue(line, column)).toBeNull();
+  });
 });
