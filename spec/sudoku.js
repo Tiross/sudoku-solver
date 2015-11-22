@@ -63,6 +63,30 @@ var moderateGrid = [
   0, 3, 0, 6, 0, 8, 0, 0, 0,
   0, 0, 0, 0, 3, 0, 0, 0, 6,
 ];
+
+var firstTestGrid = [
+  0, 7, 6, 0, 1, 0, 0, 4, 3,
+  0, 0, 0, 7, 0, 2, 9, 0, 0,
+  0, 9, 0, 0, 0, 6, 0, 0, 0,
+  0, 0, 0, 0, 6, 3, 2, 0, 4,
+  4, 6, 0, 0, 0, 0, 0, 1, 9,
+  1, 0, 5, 4, 2, 0, 0, 0, 0,
+  0, 0, 0, 2, 0, 0, 0, 9, 0,
+  0, 0, 4, 8, 0, 7, 0, 0, 1,
+  9, 1, 0, 0, 5, 0, 7, 2, 0,
+];
+
+var secondTestGrid = [
+  0, 7, 6, 0, 1, 0, 0, 4, 3,
+  0, 0, 0, 7, 0, 2, 9, 0, 0,
+  0, 9, 0, 0, 0, 6, 0, 0, 0,
+  0, 0, 0, 0, 6, 3, 2, 0, 4,
+  4, 6, 0, 0, 0, 0, 0, 1, 9,
+  1, 0, 5, 4, 2, 0, 0, 0, 0,
+  0, 0, 0, 2, 0, 0, 0, 9, 0,
+  0, 0, 4, 8, 0, 7, 0, 0, 1,
+  9, 1, 0, 0, 5, 0, 7, 2, 0,
+];
 // jscs:enable
 
 describe('Sudoku', function () {
@@ -208,6 +232,18 @@ describe('Sudoku', function () {
 
     xit('the moderate grid', function () {
       var sudoku = new Sudoku(moderateGrid);
+
+      expect(sudoku.resolve().isFinished()).toBe(true);
+    });
+
+    it('the first test grid', function () {
+      var sudoku = new Sudoku(firstTestGrid);
+
+      expect(sudoku.resolve().isFinished()).toBe(true);
+    });
+
+    it('the second test grid', function () {
+      var sudoku = new Sudoku(secondTestGrid);
 
       expect(sudoku.resolve().isFinished()).toBe(true);
     });
