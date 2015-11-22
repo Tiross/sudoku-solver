@@ -32,4 +32,6 @@
       this.grid[ index ] = cell;
     }
   };
+
+  window.Sudoku = Sudoku;
 })();
