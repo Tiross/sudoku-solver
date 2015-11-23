@@ -1,4 +1,4 @@
-(function () {
+(function (window) {
   'use strict';
 
   var Sudoku = function (grid) {
@@ -183,4 +183,4 @@
   };
 
   window.Sudoku = Sudoku;
-})();
+})(window);
