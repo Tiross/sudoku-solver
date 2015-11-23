@@ -275,6 +275,12 @@ describe('Sudoku', function () {
       expect(sudoku.resolve().isFinished()).toBe(true);
     });
 
+    it('the gentle grid', function () {
+      var sudoku = new Sudoku(gentleGrid);
+
+      expect(sudoku.resolve().isFinished()).toBe(true);
+    });
+
     it('the first test grid', function () {
       var sudoku = new Sudoku(firstTestGrid);
 
@@ -289,13 +295,6 @@ describe('Sudoku', function () {
   });
 
   describe('can not resolve', function () {
-    it('the gentle grid', function () {
-      var sudoku = new Sudoku(gentleGrid);
-
-      expect(sudoku.resolve().isFinished()).toBe(false);
-      expect(sudoku.resolve().isStuck()).toBe(true);
-    });
-
     it('the moderate grid', function () {
       var sudoku = new Sudoku(moderateGrid);
 

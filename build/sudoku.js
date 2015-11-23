@@ -144,6 +144,8 @@
 
     this.grid.map(function (cell) {
       if (!cell.value) {
+        var value;
+
         cell.candidates.forEach(function (candidate) {
           var testInLines = that.lines[ cell.line ].filter(function (val) {
             return val.candidates.indexOf(candidate) != -1;
@@ -158,12 +160,16 @@
           }).length;
 
           if (testInLines === 1 || testInColumns === 1 || testInBlocks === 1) {
-            that.addValue(candidate, cell.line, cell.column);
-
-            that.eventHandler.finded.call(that, candidate, {line: cell.line, column: cell.column});
-            count++;
+            value = candidate;
           }
         });
+
+        if (value) {
+          that.addValue(value, cell.line, cell.column);
+
+          that.eventHandler.finded.call(that, value, {line: cell.line, column: cell.column});
+          count++;
+        }
       }
     });
 
