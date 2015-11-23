@@ -202,6 +202,12 @@ describe('Sudoku', function () {
       expect(sudoku.isFinished()).toBe(false);
       expect(sudoku.addValue(4, 0, 0).isFinished()).toBe(true);
     });
+
+    it('should not allow to override values', function () {
+      var sudoku = new Sudoku(oneMissingGrid);
+
+      expect(sudoku.addValue(4, 0, 1).getValue(0, 1)).toBe(5);
+    });
   });
 
   describe('resolutions, ', function () {

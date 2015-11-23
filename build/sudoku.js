@@ -94,6 +94,10 @@
     var block = this.lines[ line ][ column ].block;
     var hasNullValue = false;
 
+    if (this.lines[ line ][ column ].value) {
+      return this;
+    }
+
     this.grid.map(function (cell) {
       if (cell.line === line && cell.column === column) {
         cell.value = value;
