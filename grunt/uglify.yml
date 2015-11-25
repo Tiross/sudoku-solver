@@ -4,9 +4,31 @@ options:
   dead_code: true
 
 scripts:
-  expand: true
-  ext: '.min.js'
-  flatten: true
   src:
-    - src/*.js
-  dest: build/
+    - src/sudoku.js
+  dest: build/sudoku.min.js
+
+jquery:
+  src:
+    - src/sudoku.js
+    - src/jquery.js
+  dest: build/jquery-sudoku-solver.min.js
+
+source:
+  options:
+    mangle: false
+    beautify: true
+  src:
+    - src/sudoku.js
+    - src/jquery.js
+  dest: build/jquery-sudoku-solver.js
+
+sudoku-source:
+  options:
+    mangle: false
+    beautify: true
+    compress:
+      drop_console: false
+  src:
+    - src/sudoku.js
+  dest: build/sudoku.js

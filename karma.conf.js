@@ -9,6 +9,7 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
     ],
     files: [
+      'node_modules/jquery/dist/jquery.min.js',
       'src/*.js',
       'spec/*.js',
     ],
@@ -19,7 +20,6 @@ module.exports = function(config) {
     autoWatch: false,
     browsers: [
       'PhantomJS',
-      'Safari',
       'Firefox',
     ],
     singleRun: true,

@@ -27,8 +27,13 @@
     this.blocks  = [[], [], [], [], [], [], [], [], []];
     this.grid    = [];
 
+    // jscs:disable
     this.eventHandler = {};
-    this.eventHandler.finded = function () {};
+    this.eventHandler.finded     = function () {};
+    this.eventHandler.finished   = function () {};
+    this.eventHandler.stucked    = function () {};
+    this.eventHandler.candidates = function () {};
+    // jscs:enable
 
     for (var index = 0; index < 81; index++) {
       var line   = Math.floor(index / 9);
@@ -67,7 +72,7 @@
 
     if ('function' === typeof callback) {
       this.grid.forEach(function (cell) {
-        callback.call(that, {line: cell.line, column: cell.column});
+        callback.call(that, {line: cell.line, column: cell.column, block: cell.block});
       });
     }
 
@@ -78,8 +83,22 @@
     return this.finished;
   };
 
+  Sudoku.prototype.markFinished = function () {
+    this.finished = true;
+    this.eventHandler.finished.call(this);
+
+    return this;
+  };
+
   Sudoku.prototype.isStuck = function () {
     return this.stuck;
+  };
+
+  Sudoku.prototype.markStuck = function () {
+    this.stuck = true;
+    this.eventHandler.stucked.call(this);
+
+    return this;
   };
 
   Sudoku.prototype.getValue = function (line, column) {
@@ -93,6 +112,7 @@
   Sudoku.prototype.addValue = function (value, line, column) {
     var block = this.lines[ line ][ column ].block;
     var hasNullValue = false;
+    var that = this;
 
     if (this.lines[ line ][ column ].value) {
       return this;
@@ -102,6 +122,8 @@
       if (cell.line === line && cell.column === column) {
         cell.value = value;
         cell.candidates = [];
+
+        that.eventHandler.finded.call(that, value, {line: line, column: column, block: block});
       }
 
       if (cell.line === line || cell.column === column || cell.block === block) {
@@ -109,6 +131,7 @@
 
         if (position != -1) {
           cell.candidates.splice(position, 1);
+          that.eventHandler.candidates.call(that, cell.candidates, {line: line, column: column});
         }
 
         if (cell.revocated.indexOf(value) != -1) {
@@ -121,7 +144,9 @@
       }
     });
 
-    this.finished = !hasNullValue;
+    if (!hasNullValue) {
+      this.markFinished();
+    }
 
     return this;
   };
@@ -133,8 +158,6 @@
     this.grid.map(function (cell) {
       if (!cell.value && cell.candidates.length === 1) {
         that.addValue(cell.candidates[0], cell.line, cell.column);
-
-        that.eventHandler.finded.call(that, cell.candidates[0], {line: cell.line, column: cell.column});
         count++;
       }
     });
@@ -170,8 +193,6 @@
 
         if (value) {
           that.addValue(value, cell.line, cell.column);
-
-          that.eventHandler.finded.call(that, value, {line: cell.line, column: cell.column});
           count++;
         }
       }
@@ -180,13 +201,15 @@
     return count;
   };
 
+  Sudoku.prototype.next = function () {
+    this.isFinished() || this.findLonelyCandidate() || this.findHiddenSingle() || this.markStuck();
+
+    return this;
+  };
+
   Sudoku.prototype.resolve = function () {
     while (!this.isFinished() && !this.isStuck()) {
-      if (!this.findLonelyCandidate()) {
-        if (!this.findHiddenSingle()) {
-          this.stuck = true;
-        }
-      }
+      this.next();
     }
 
     return this;

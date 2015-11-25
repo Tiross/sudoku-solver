@@ -5,10 +5,26 @@ scripts:
     - src/*.js
     - spec/*.js
   tasks:
-  - jscs
-  - karma:scripts
-  - uglify
-  - copy
+    - jscs
+    - karma:scripts
+    - uglify
+
+demo-js:
+  options:
+    atBegin: true
+  files:
+    - demo/*.js
+  tasks:
+    - jscs
+
+demo-css:
+  options:
+    atBegin: true
+  files:
+    - demo/*.less
+  tasks:
+    - less
+    - postcss
 
 grunt:
   options:

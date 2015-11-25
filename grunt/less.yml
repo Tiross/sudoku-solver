@@ -1,0 +1,7 @@
+options:
+  strictMath: true
+  strictUnits: true
+
+demo:
+  src: demo/app.less
+  dest: demo/app.css
